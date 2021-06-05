@@ -1,0 +1,87 @@
+{
+    "module" : {
+        "tfplan-functions" : {
+            "source" : "./../../common-functions/tfplan-functions/tfplan-functions.sentinel"
+        }
+    },
+    
+    "global" : {
+             "resource_changes" : { 
+             "value" : [
+            {
+                "address": "google_secret_manager_secret.secret-basic",
+                "mode": "managed",
+                "type": "google_secret_manager_secret",
+                "name": "secret-basic",
+                "provider_name": "registry.terraform.io/hashicorp/google",
+                "change": {
+                    "actions": [
+                        "create"
+                    ],
+                    "before": null,
+                    "after": {
+                        "labels": {
+                            "label": "my-label"
+                        },
+                        "replication": [
+                            {
+                                "automatic": null,
+                                "user_managed": [
+                                    {
+                                        "replicas": [
+                                            {
+                                                "location": "us-east1"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ],
+                        "secret_id": "secret-test",
+                        "timeouts": null
+                    },
+                    "after_unknown": {
+                        "create_time": true,
+                        "id": true,
+                        "labels": {},
+                        "name": true,
+                        "project": true,
+                        "replication": [
+                            {
+                                "user_managed": [
+                                    {
+                                        "replicas": [
+                                            {}
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "before_sensitive": false,
+                    "after_sensitive": {
+                        "labels": {},
+                        "replication": [
+                            {
+                                "user_managed": [
+                                    {
+                                        "replicas": [
+                                            {}
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            }
+        ]
+    }
+    },
+    "test" : {
+        "rules" : {
+            "main" : true
+        }
+    }
+    
+}
